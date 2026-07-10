@@ -1,1 +1,9 @@
-
+async function detectarPlaca(base64Image) {
+    const response = await fetch('/.netlify/functions/detectar', {
+        method: 'POST',
+        body: JSON.stringify({ image: base64Image.split(',')[1] }) // Remove o prefixo data:image/...
+    });
+    const data = await response.json();
+    console.log("Resultado do Google:", data.texto);
+    // Aqui você compara o texto com sua lista de placas
+}
